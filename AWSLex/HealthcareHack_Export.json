@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "HealthcareHack",
+    "version": "3",
+    "intents": [
+      {
+        "name": "Symptoms",
+        "version": "8",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:877216006890:function:setKeywords",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "I am having {symptom}"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "Symptom",
+            "slotTypeVersion": "1",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What kind of symptoms are you having?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "symptom"
+          }
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I'm sorry to hear that. Where are you looking to get treatment for {symptom}?"
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I'm sorry to hear that. What area would you like to find treatment for {symptom}?"
+            }
+          ]
+        }
+      },
+      {
+        "name": "LocationSearch",
+        "version": "3",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:877216006890:function:setLocation",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "Near {Location}",
+          "Around {Location}"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AT_CITY",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "What City?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "Location"
+          }
+        ]
+      },
+      {
+        "name": "Greetings",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Hey",
+          "Hello",
+          "What's up",
+          "Hi there",
+          "Hi"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Hello, how can I help you today?"
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Hey there, how can I help?"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Specialists",
+        "version": "5",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:877216006890:function:setSpecialist",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "I would like to see a {specialist}"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "Specialists",
+            "slotTypeVersion": "1",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "e.g. What city?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "specialist"
+          }
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "What area would you like to find a {specialist} in?"
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Where are are you looking for a {specialist} at?"
+            }
+          ]
+        }
+      },
+      {
+        "name": "ProviderSearch",
+        "version": "11",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Can you help me find a doctor",
+          "Can you help me find treatment",
+          "I need treatment",
+          "I need a doctor"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Sure, what kind of treatment or doctor are you looking for?"
+            }
+          ]
+        }
+      },
+      {
+        "name": "InsuranceSearch",
+        "version": "4",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:877216006890:function:setInsurance",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "I am using {network}"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "networks",
+            "slotTypeVersion": "1",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "can you confirm your network?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "network"
+          }
+        ]
+      },
+      {
+        "name": "LocationAffirm",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "And which Insurance Network are you planning on using?"
+            }
+          ]
+        }
+      }
+    ],
+    "slotTypes": [
+      {
+        "description": "Specialist you can see",
+        "name": "Specialists",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "Allergist",
+            "synonyms": []
+          },
+          {
+            "value": "Dermatologist",
+            "synonyms": []
+          },
+          {
+            "value": "General Care Doctor",
+            "synonyms": []
+          },
+          {
+            "value": "Chiropractor",
+            "synonyms": []
+          },
+          {
+            "value": "Dietitian",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "name": "networks",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "Aetna",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      },
+      {
+        "description": "possible user symptoms",
+        "name": "Symptom",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "rash",
+            "synonyms": []
+          },
+          {
+            "value": "ankle pain",
+            "synonyms": []
+          },
+          {
+            "value": "arthritis",
+            "synonyms": []
+          },
+          {
+            "value": "acne",
+            "synonyms": []
+          },
+          {
+            "value": "cold",
+            "synonyms": []
+          },
+          {
+            "value": "migraine ",
+            "synonyms": []
+          },
+          {
+            "value": "foot pain",
+            "synonyms": []
+          },
+          {
+            "value": "joint pain",
+            "synonyms": []
+          },
+          {
+            "value": "flu",
+            "synonyms": []
+          }
+        ],
+        "valueSelectionStrategy": "ORIGINAL_VALUE"
+      }
+    ],
+    "voiceId": "Salli",
+    "childDirected": true,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 7200,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    }
+  }
+}
