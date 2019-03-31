@@ -1,17 +1,19 @@
-# chicago_tightrain
-
-Tight Rain is the name of our group inspired by one of our team members, Grant DePalma football history. Tight Rain is his favorite defensive play call indicating a weak side blitz while strength of defense is set to the offensive's tight end. 
+# GABBY
+## Tagline
+Find the Best Doctor. Make an Appointment. Anytime.
 
 ## Solution: GABBY
-Gabby is a Two-way chat bot that allows patients to easily and effectively schedule and manage doctors appointments through a simple and quick text exchange with local providers.
+Gabby is a Two-way AI chat bot  that allows patients to easily and effectively schedule and manage doctors appointments by rating through a simple and quick text exchange with local providers. Gabby aims to increase public access to healthcare information while it's on your mind, decrease time spent on scheduling doctor's appointments as well as democratizing access to anyone with a phone that can text.
 
 ## How to Use
 Text this Number
 
 * Keep conversation around type of doctor, symptoms, insurance provider and location
 
-## Team
+## Landing Page
+https://mailchi.mp/42e116e50f68/gabby
 
+## Team
 Gabby
 Adam
 Riz
