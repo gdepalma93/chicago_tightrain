@@ -13,6 +13,9 @@ Text this Number: +12193029678
 ## Landing Page
 https://mailchi.mp/42e116e50f68/gabby
 
+## Competition 
+2019 AI for Healthcare Hackathon at Accenture
+
 ## Team Tight Rain
 Gabi
 Adam
